@@ -1,0 +1,116 @@
+/* Pomelo – raport poranny (dashboard). Zasady: skill 7-Skills/pomelo-raport-ui/SKILL.md */
+:root{
+  --tlo:#F1F1ED;          /* ciepłe złamane białe – tło strony (pomelo.com.pl) */
+  --karta:#FFFFFF;
+  --tekst:#1F1F1F; --tekst-2:#595959; --linia:#E2E2DA;
+  --grafit:#37383C;       /* nagłówek strony, ciemne elementy */
+  --akcent:#C8C84A;       /* limonkowo-oliwkowy akcent Pomelo – podkreślenia, aktywne zakładki, NIE status */
+  --akcent-ciemny:#4A4A17;/* tekst/obwódka na akcencie, fokus */
+  --akcent-jasny:#F3F3D6;
+  /* statusy – zawsze kolor + słowo */
+  --zle:#B3261E;  --zle-tlo:#FBE9E7;
+  --uwaga:#8A5A00; --uwaga-tlo:#FFF3D1;
+  --dobrze:#2E6B34; --dobrze-tlo:#E5F2E3;
+  --szary:#6E6E68; --szary-tlo:#ECECE6;
+  --r:12px; --r-maly:999px;
+  --font-tekst:'Montserrat',system-ui,sans-serif; --font-naglowek:'Rubik','Montserrat',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--tlo);color:var(--tekst);font-family:var(--font-tekst);font-size:14px;line-height:1.5}
+a{color:var(--akcent-ciemny)}
+:focus-visible{outline:3px solid var(--akcent-ciemny);outline-offset:2px}
+
+/* pasek górny */
+.pasek{background:var(--grafit);color:#fff;padding:14px 32px;display:flex;align-items:center;gap:28px}
+.pasek .logo{font-family:var(--font-naglowek);font-weight:700;font-size:18px;letter-spacing:-.01em}
+.pasek .logo span{color:var(--akcent)}
+.pasek nav{display:flex;gap:6px;flex-wrap:wrap}
+.pasek nav a{color:#D8D8D2;text-decoration:none;font-size:13px;font-weight:500;padding:6px 12px;border-radius:var(--r-maly)}
+.pasek nav a.on{background:var(--akcent);color:var(--akcent-ciemny);font-weight:700}
+.pasek .data{margin-left:auto;font-size:12.5px;color:#BDBDB6}
+
+.strona{max-width:1180px;margin:0 auto;padding:26px 32px 56px}
+h1{font-family:var(--font-naglowek);font-weight:700;font-size:28px;letter-spacing:-.02em;margin:0 0 4px}
+h1 .podkr{background:linear-gradient(transparent 62%,var(--akcent) 62%,var(--akcent) 90%,transparent 90%);padding:0 2px}
+.zrodla{color:var(--tekst-2);font-size:12.5px;margin:0 0 22px}
+h2{font-family:var(--font-naglowek);font-weight:600;font-size:18px;margin:30px 0 12px;display:flex;align-items:center;gap:10px}
+h2 .nr{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:var(--akcent);color:var(--akcent-ciemny);font-size:13px;font-weight:700}
+h2 small{font-family:var(--font-tekst);font-weight:500;font-size:12.5px;color:var(--tekst-2)}
+
+/* karta i kafelki */
+.karta{background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);padding:18px 20px}
+.kafelki{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kafel{background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);padding:16px 18px;border-top:4px solid var(--szary)}
+.kafel.zle{border-top-color:var(--zle)} .kafel.dobrze{border-top-color:var(--dobrze)} .kafel.uwaga{border-top-color:#C99A2E}
+.kafel .co{font-size:12px;color:var(--tekst-2);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.kafel .liczba{font-family:var(--font-naglowek);font-size:34px;font-weight:600;letter-spacing:-.02em;margin:6px 0 2px}
+.kafel .por{font-size:12.5px;color:var(--tekst-2);margin-bottom:10px}
+
+/* znaczek statusu: kolor + słowo/kropka */
+.st{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:var(--r-maly);white-space:nowrap}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.zle{background:var(--zle-tlo);color:var(--zle)} .st.uwaga{background:var(--uwaga-tlo);color:var(--uwaga)}
+.st.dobrze{background:var(--dobrze-tlo);color:var(--dobrze)} .st.szary{background:var(--szary-tlo);color:var(--szary)}
+.st.bez::before{display:none}
+
+/* podsumowanie */
+.podsum{display:grid;gap:10px}
+.podsum p{margin:0} .podsum b{font-weight:700}
+.alarm{background:var(--zle-tlo);border:1px solid #F2C4BF;border-left:5px solid var(--zle);border-radius:var(--r);padding:12px 16px}
+.alarm .tag{font-size:11.5px;font-weight:700;color:var(--zle);text-transform:uppercase;letter-spacing:.06em}
+
+/* tabele */
+table.tab{width:100%;border-collapse:separate;border-spacing:0;background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);overflow:hidden}
+.tab th{text-align:left;font-size:12px;font-weight:600;color:var(--tekst-2);padding:10px 14px;border-bottom:1px solid var(--linia);background:#FAFAF7}
+.tab td{padding:10px 14px;border-bottom:1px solid #EFEFE9;vertical-align:top}
+.tab tr:last-child td{border-bottom:0}
+.tab td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tab .cel{color:var(--tekst-2);font-size:12.5px;white-space:nowrap}
+.pod{font-size:13px;color:var(--tekst-2);margin:10px 2px 0}
+
+/* karta problemu */
+.problem{background:var(--karta);border:1px solid var(--linia);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
+.problem header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--linia)}
+.problem header .nr{font-family:var(--font-naglowek);font-weight:700;font-size:15px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--grafit);color:#fff}
+.problem header h3{margin:0;font-family:var(--font-naglowek);font-size:16px;font-weight:600}
+.problem header .st{margin-left:auto}
+.problem dl{display:grid;grid-template-columns:120px 1fr;margin:0}
+.problem dt{padding:10px 18px;font-size:12px;font-weight:700;color:var(--tekst-2);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #EFEFE9;background:#FAFAF7}
+.problem dd{margin:0;padding:10px 18px;border-bottom:1px solid #EFEFE9}
+.problem dd:last-of-type,.problem dt:last-of-type{border-bottom:0}
+.wiemy{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.wiemy div{border-radius:8px;padding:8px 12px;font-size:13px}
+.wiemy .tak{background:var(--dobrze-tlo)} .wiemy .nie{background:var(--uwaga-tlo)}
+.wiemy b{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.cytat{font-style:italic;color:#3d3d3a}
+.osoba{font-weight:600;background:var(--akcent-jasny);padding:1px 6px;border-radius:5px;white-space:nowrap}
+
+@media (max-width:820px){
+  .pasek{flex-wrap:wrap;padding:12px 16px;gap:10px} .pasek .data{margin-left:0}
+  .strona{padding:18px 16px 40px} .kafelki{grid-template-columns:1fr}
+  .problem dl{grid-template-columns:1fr} .wiemy{grid-template-columns:1fr}
+  table.tab{display:block;overflow-x:auto}
+}
+
+/* ---------- efekty (wersja 2) – subtelne, max ~0,8 s, wyłączone przy prefers-reduced-motion ---------- */
+.fx .wejdz{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.fx .wejdz.widac{opacity:1;transform:none}
+h1 .podkr{background:none;background-image:linear-gradient(transparent 62%,var(--akcent) 62%,var(--akcent) 90%,transparent 90%);background-repeat:no-repeat;background-size:100% 100%;transition:background-size .8s cubic-bezier(.2,.7,.2,1) .3s}
+.fx body:not(.gotowe) h1 .podkr{background-size:0% 100%}
+.alarm .tag::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--zle);margin-right:8px;vertical-align:1px;animation:puls 1.8s ease-out infinite}
+@keyframes puls{0%{box-shadow:0 0 0 0 rgba(179,38,30,.55)}70%{box-shadow:0 0 0 9px rgba(179,38,30,0)}100%{box-shadow:0 0 0 0 rgba(179,38,30,0)}}
+.kafel,.problem{transition:transform .2s ease,box-shadow .2s ease}
+.kafel:hover,.problem:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(55,56,60,.10)}
+.kafel .pasek-celu{height:6px;border-radius:99px;background:var(--szary-tlo);margin:2px 0 12px;position:relative;overflow:hidden}
+.kafel .pasek-celu i{position:absolute;inset:0 auto 0 0;width:0;border-radius:99px;background:currentColor;transition:width 1s cubic-bezier(.2,.7,.2,1) .2s}
+.kafel .pasek-celu b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--grafit)}
+.kafel.zle .pasek-celu{color:var(--zle)} .kafel.dobrze .pasek-celu{color:var(--dobrze)} .kafel.uwaga .pasek-celu{color:#C99A2E}
+.tab tr{transition:background .15s} .tab tr:hover td{background:#FBFBF4}
+.fx .tab .st{opacity:0;transform:scale(.85);transition:opacity .35s ease,transform .35s ease}
+.fx .tab.widac .st{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .fx .wejdz,.fx .tab .st{opacity:1!important;transform:none!important;transition:none!important}
+  h1 .podkr{background-size:100% 100%!important;transition:none!important}
+  .alarm .tag::before{animation:none} .kafel .pasek-celu i{transition:none}
+  .kafel:hover,.problem:hover{transform:none}
+}
