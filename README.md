@@ -9,7 +9,9 @@ Publiczne demo prototypu „Raport jakości” (raport poranny dla zespołu cate
 - `zbuduj_demo.py` – buduje `site/` i sprawdza, że nie ma w nim e-maili, telefonów ani odwołań do plików spoza demo.
 - `site/` – gotowa strona, którą publikuje Netlify (`netlify.toml`).
 
-Przebudowa po zmianie danych testowych albo generatora:
+Adres: https://raport-jakosci-demo.netlify.app. Netlify publikuje automatycznie każdą zmianę wysłaną do gałęzi `main` (folder `site/` bez kroku budowania).
+
+Przebudowa po zmianie danych testowych albo generatora (potem commit i push):
 
 ```bash
 python zbuduj_demo.py
